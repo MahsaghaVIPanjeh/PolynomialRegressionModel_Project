@@ -24,5 +24,26 @@ summary(poly_regressor)
 
 #visualizing linear regreesion model
 library(ggplot2)
-
+ggplot()+
+  geom_point(aes(x = dataset$Level,y = dataset$Salary),colour='blue')+
+  geom_line(aes(x = dataset$Level,y = predict(linear_regressor,newdata = dataset)),colour='red')+
+  ggtitle("Simple Linear Regression")+
+  xlab('Levels')+
+  ylab('Salary')
 #visualizing polynomial regression model
+ggplot()+
+  geom_point(aes(x = dataset$Level,y = dataset$Salary),colour='blue')+
+  geom_line(aes(x = dataset$Level,y = predict(poly_regressor,newdata = dataset)),colour='red')+
+  ggtitle("Polynomial Regression")+
+  xlab('Levels')+
+  ylab('Salary')
+
+#predicting a new result by using linear regression model
+y_linear_pred = predict(linear_regressor,data.frame(Level = 6.5))
+print(y_linear_pred)
+#predictiong a new result by using polynomiad regression model
+y_polynomial_pred = predict(poly_regressor,data.frame(Level = 6.5,
+                                                      Level2 =6.5^2,
+                                                      Level3 = 6.5 ^3,
+                                                      Level4 = 6.5^4))
+print(y_polynomial_pred)
